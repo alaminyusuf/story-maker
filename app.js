@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
 const exphbs = require('express-handlebars')
@@ -21,6 +22,11 @@ app.engine(
   exphbs({ defaultLayout: 'main', extname: '.hbs' })
 )
 app.set('view engine', '.hbs')
+
+app.use(express.static(path.join(__dirname, 'public')))
+
+// Routes
+app.use('/', require('./routes/index'))
 
 const PORT = process.env.PORT
 
