@@ -7,7 +7,7 @@ const session = require('express-session')
 const passport = require('passport')
 const connectDB = require('./config/db')
 
-dotenv.config({ path: './config/config.env' })
+dotenv.config()
 
 // Passport
 require('./config/passport')(passport)

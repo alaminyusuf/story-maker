@@ -1,8 +1,6 @@
 const GoogltStrategy = require('passport-google-oauth20')
   .Strategy
 
-const mongoose = require('mongoose')
-
 const User = require('../model/User')
 
 module.exports = function (passport) {
@@ -13,7 +11,7 @@ module.exports = function (passport) {
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback',
       },
-      async (accessToken, refreshToken, profile, done) => {
+      async (accessToken, refreshToken, profile, cd) => {
         const newUser = new User({
           googleId: profile.id,
           displayName: profile.displayName,
@@ -27,10 +25,10 @@ module.exports = function (passport) {
           })
 
           if (user) {
-            done(null, user)
+            cd(null, user)
           } else {
             user = await User.create(newUser)
-            done(null, user)
+            cd(null, user)
           }
         } catch (error) {
           console.error(err)
@@ -39,11 +37,9 @@ module.exports = function (passport) {
     )
   )
 
-  passport.serializeUser((user, done) =>
-    done(null, user.id)
-  )
+  passport.serializeUser((user, cd) => cd(null, user.id))
 
-  passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => done(err, user))
+  passport.deserializeUser((id, cd) => {
+    User.findById(id, (err, user) => cd(err, user))
   })
 }
