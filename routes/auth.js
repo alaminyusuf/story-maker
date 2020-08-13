@@ -1,6 +1,5 @@
-const express = require('express')
+const router = require('express').Router()
 const passport = require('passport')
-const router = express.Router()
 
 router.get(
   '/google',
@@ -20,7 +19,7 @@ router.get(
 
 // Logout route
 router.get('/logout', (req, res) => {
-  res.logout()
+  req.logout()
   res.redirect('/')
 })
 
