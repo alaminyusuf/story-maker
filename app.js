@@ -11,6 +11,7 @@ dotenv.config()
 
 // Passport
 require('./config/passport')(passport)
+require('./config/facebook')(passport)
 
 connectDB()
 
@@ -42,11 +43,12 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static('public'))
 
 // Routes
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
+app.use('/auth/facebook', require('./routes/facebook'))
 
 const PORT = process.env.PORT
 
