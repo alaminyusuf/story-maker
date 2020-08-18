@@ -19,6 +19,9 @@ connectDB()
 
 const app = express()
 
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
 // Loogging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
@@ -53,7 +56,8 @@ app.use(express.static('public'))
 // Routes
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
-app.use('/auth/facebook', require('./routes/facebook'))
+app.use('/stories', require('./routes/stories'))
+// app.use('/auth/facebook', require('./routes/facebook'))
 
 const PORT = process.env.PORT
 
