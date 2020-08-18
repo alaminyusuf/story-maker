@@ -5,7 +5,9 @@ const exphbs = require('express-handlebars')
 const morgan = require('morgan')
 const session = require('express-session')
 const passport = require('passport')
+const MongoStore = require('connect-mongo')(session)
 const connectDB = require('./config/db')
+const mongoose = require('mongoose')
 
 dotenv.config()
 
@@ -36,6 +38,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: { secure: true },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+    }),
   })
 )
 
