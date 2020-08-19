@@ -33,40 +33,62 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/edit/:id', async (req, res) => {
-  const story = await Story.findOne({ _id: req.params.id })
+  try {
+    const story = await Story.findOne({
+      _id: req.params.id,
+    })
 
-  if (!story) {
-    res.render('errors/404')
+    if (!story) {
+      res.render('errors/404')
+    }
+
+    // if (story.id != req.user.id) {
+    //   res.redirect('/stories')
+    // } else {
+    res.render('stories/edit', {
+      story,
+    })
+  } catch (err) {
+    console.error(err)
+    res.render('errors/500')
   }
-
-  // if (story.id != req.user.id) {
-  //   res.redirect('/stories')
-  // } else {
-  res.render('stories/edit', {
-    story,
-  })
 })
 
 router.put('/:id', async (req, res) => {
-  let story = await Story.findById(req.params.id)
+  try {
+    let story = await Story.findById(req.params.id)
 
-  if (!story) {
-    return res.render('errors/404')
-  }
-
-  // if (story.id != req.user.id) {
-  //   res.redirect('/stories')
-  // } else {
-  story = await Story.findOneAndUpdate(
-    { _id: req.params.id },
-    req.body,
-    {
-      new: true,
-      runValidators: true,
+    if (!story) {
+      return res.render('errors/404')
     }
-  )
-  res.redirect('/dashboard')
-  // }
+
+    // if (story.id != req.user.id) {
+    //   res.redirect('/stories')
+    // } else {
+    story = await Story.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    )
+    res.redirect('/dashboard')
+    // }
+  } catch (err) {
+    console.error(err)
+    res.render('errors/500')
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    await Story.remove({ _id: req.params.id })
+    res.redirect('/dashboard')
+  } catch (err) {
+    console.error(err)
+    res.render('errors/500')
+  }
 })
 
 module.exports = router
