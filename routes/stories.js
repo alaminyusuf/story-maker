@@ -32,6 +32,19 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/:id', async (req, res) => {
+  try {
+    let story = await Story.findById(req.params.id)
+    if (!story) {
+      res.render('error/400')
+    }
+    res.render('stories/show')
+  } catch (err) {
+    console.error(err)
+    res.render('errors/500')
+  }
+})
+
 router.get('/edit/:id', async (req, res) => {
   try {
     const story = await Story.findOne({
