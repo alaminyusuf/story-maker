@@ -6,9 +6,11 @@
         <div class="card-image">
           {{!-- todo: editIcon --}}
         </div>
-        <div class="card-content">
+        <div class="card-heading">
           <h5>{{title}}</h5>
-          <p>{{stripTags (truncate body 120)}}</p>
+        </div>
+        <div class="story-card-content">
+          <p>{{stripTags (truncate body 100)}}</p>
           <br>
           <div class="chip">
             <img src="{{user.image}}" alt="">
@@ -17,7 +19,7 @@
         </div>
 
         <div class="card-action">
-          <a href="/stories/{{_id}}" class="btn gey">Read More</a>
+          <a href="/stories/{{_id}}" class="btn grey">Read More</a>
         </div>
       </div>
     </div>
