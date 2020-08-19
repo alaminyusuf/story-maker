@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const morgan = require('morgan')
 const session = require('express-session')
 const passport = require('passport')
+const methodOverride = require('method-override')
 const MongoStore = require('connect-mongo')(session)
 const connectDB = require('./config/db')
 const mongoose = require('mongoose')
@@ -21,6 +22,19 @@ const app = express()
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(
+  methodOverride((req, res) => {
+    if (
+      req.body &&
+      typeof req.body === 'object' &&
+      '_method' in req.body
+    ) {
+      let method = req.body._method
+      delete req.body._method
+      return method
+    }
+  })
+)
 
 // Loogging
 if (process.env.NODE_ENV === 'development') {
@@ -30,6 +44,7 @@ if (process.env.NODE_ENV === 'development') {
 //  Handlebars Helpers to format date
 const {
   formatDate,
+  select,
   stripTags,
   truncate,
   editIcon,
@@ -42,6 +57,7 @@ app.engine(
     helpers: {
       // editIcon,
       formatDate,
+      select,
       stripTags,
       truncate,
     },
