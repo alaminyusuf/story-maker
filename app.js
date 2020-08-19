@@ -32,6 +32,7 @@ const {
   formatDate,
   stripTags,
   truncate,
+  editIcon,
 } = require('./helpers/hbs')
 
 // Handlebars
@@ -39,6 +40,7 @@ app.engine(
   '.hbs',
   exphbs({
     helpers: {
+      editIcon,
       formatDate,
       stripTags,
       truncate,
