@@ -40,7 +40,7 @@ app.engine(
   '.hbs',
   exphbs({
     helpers: {
-      editIcon,
+      // editIcon,
       formatDate,
       stripTags,
       truncate,
@@ -69,6 +69,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(express.static('public'))
+
+app.use((req, res, next) => {
+  res.locals.user = req.user || null
+  next()
+})
 
 // Routes
 app.use('/', require('./routes/index'))
