@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const { ensureAuth } = require('../middlewares/auth')
 const Story = require('../model/Story')
 
 router.get('/add', (req, res) => {
@@ -10,7 +9,7 @@ router.post('/', async (req, res) => {
   try {
     req.body.user = req.body.id
     await Story.create(req.body)
-    res.redirect('/dashboard')
+    res.redirect('/dashboard').lean()
   } catch (err) {
     console.error(err)
     res.render('errors/500')
@@ -55,12 +54,13 @@ router.get('/edit/:id', async (req, res) => {
       res.render('errors/404')
     }
 
-    // if (story.id != req.user.id) {
-    //   res.redirect('/stories')
-    // } else {
-    res.render('stories/edit', {
-      story,
-    })
+    if (story.id != req.user.id) {
+      res.redirect('/stories')
+    } else {
+      res.render('stories/edit', {
+        story,
+      })
+    }
   } catch (err) {
     console.error(err)
     res.render('errors/500')
@@ -75,19 +75,19 @@ router.put('/:id', async (req, res) => {
       return res.render('errors/404')
     }
 
-    // if (story.id != req.user.id) {
-    //   res.redirect('/stories')
-    // } else {
-    story = await Story.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    )
-    res.redirect('/dashboard')
-    // }
+    if (story.id != req.user.id) {
+      res.redirect('/stories')
+    } else {
+      story = await Story.findOneAndUpdate(
+        { _id: req.params.id },
+        req.body,
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+      res.redirect('/dashboard')
+    }
   } catch (err) {
     console.error(err)
     res.render('errors/500')

@@ -6,7 +6,7 @@ const {
 } = require('../middlewares/auth')
 const Story = require('../model/Story')
 
-router.get('/', (req, res) => {
+router.get('/', ensureGuest, (req, res) => {
   res.render('login', { layout: 'login' })
 })
 
@@ -17,12 +17,12 @@ router.get('/login', (req, res) => {
 router.get('/dashboard', async (req, res) => {
   try {
     const stories = await Story.find({
-      // user: req.user.id,
+      user: req.user.id,
     }).lean()
 
     res.render('dashboard', {
       stories: stories,
-      // name: req.user.firstName,
+      name: req.user.firstName,
     })
   } catch (err) {
     console.error(err)

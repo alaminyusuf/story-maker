@@ -55,7 +55,7 @@ app.engine(
   '.hbs',
   exphbs({
     helpers: {
-      // editIcon,
+      editIcon,
       formatDate,
       select,
       stripTags,
@@ -73,7 +73,7 @@ app.use(
     secret: 'octopus',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true },
+    cookie: { secure: false },
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
     }),
@@ -91,7 +91,10 @@ app.use((req, res, next) => {
   next()
 })
 
+const { ensureAuth } = require('./middlewares/auth')
+
 // Routes
+// app.use('/*', ensureAuth)
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
