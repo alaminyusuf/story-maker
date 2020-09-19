@@ -13,7 +13,7 @@ router.get(
   passport.authenticate('facebook', {
     failureRedirect: '/',
   }),
-  function (req, res) {
+  (req, res) => {
     res.redirect('/dashboard')
   }
 )
