@@ -23,30 +23,27 @@ module.exports = function (passport) {
         ],
       },
 
-      function (accessToken, refreshToken, profile, cb) {
-        console.log(profile)
-        ;async (accessToken, refreshToken, profile, cd) => {
-          const newUser = new User({
+      async (accessToken, refreshToken, profile, cd) => {
+        const newUser = new User({
+          googleId: profile.id,
+          displayName: profile.displayName,
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          image: profile.photos[0].value,
+        })
+        try {
+          let user = await User.findOne({
             googleId: profile.id,
-            displayName: profile.displayName,
-            firstName: profile.name.givenName,
-            lastName: profile.name.familyName,
-            image: profile.photos[0].value,
           })
-          try {
-            let user = await User.findOne({
-              googleId: profile.id,
-            })
 
-            if (user) {
-              cd(null, user)
-            } else {
-              user = await User.create(newUser)
-              cd(null, user)
-            }
-          } catch (error) {
-            console.error(err)
+          if (user) {
+            cd(null, user)
+          } else {
+            user = await User.create(newUser)
+            cd(null, user)
           }
+        } catch (error) {
+          console.error(err)
         }
       }
     )
