@@ -48,4 +48,10 @@ module.exports = function (passport) {
       }
     )
   )
+
+  passport.serializeUser((user, cd) => cd(null, user.id))
+
+  passport.deserializeUser((id, cd) => {
+    User.findById(id, (err, user) => cd(err, user))
+  })
 }
