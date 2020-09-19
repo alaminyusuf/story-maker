@@ -14,7 +14,7 @@ dotenv.config()
 
 // Passport
 require('./config/passport')(passport)
-require('./config/facebook')(passport)
+// require('./config/facebook')(passport)
 
 connectDB()
 
@@ -91,10 +91,7 @@ app.use((req, res, next) => {
   next()
 })
 
-const { ensureAuth } = require('./middlewares/auth')
-
 // Routes
-// app.use('/*', ensureAuth)
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))

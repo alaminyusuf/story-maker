@@ -7,18 +7,19 @@ const {
 const Story = require('../model/Story')
 
 router.get('/', ensureGuest, (req, res) => {
+  console.log(req.isAuthenticated())
   res.render('login', { layout: 'login' })
 })
 
-router.get('/login', (req, res) => {
-  res.redirect('/')
-})
+router.get('/dashboard', ensureAuth, async (req, res) => {
+  console.log(req.isAuthenticated())
 
-router.get('/dashboard', async (req, res) => {
   try {
     const stories = await Story.find({
-      user: req.user.id,
+      status: 'public',
     }).lean()
+
+    console.log(stories)
 
     res.render('dashboard', {
       stories: stories,
