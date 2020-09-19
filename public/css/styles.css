@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+l {
+  font-weight: 500;
+}
+
+body {
+  background: #f4f4f4;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 25px;
+}
+
+footer {
+  text-align: center;
+  padding: 2em;
+  color: #333;
+}
+
+h3 {
+  font-weight: 400;
+  margin: 1em 0;
+}
+
+nav {
+  background-color: slategray;
+  height: 7vh;
+  color: #f4f4f4;
+}
+
+ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+li {
+  list-style: none;
+  padding: 0.5em 1.5em;
+}
+
+textarea {
+  outline: none;
+  padding: 0.2em 0.5em;
+  resize: none;
+  width: 100%;
+  font-size: large;
+  border-bottom: 1px solid #333;
+}
+
+select {
+  outline: none;
+  width: 100%;
+  background-color: unset;
+  border: none;
+  margin: 0.8em 0;
+  border-bottom: 1px solid rgb(138, 137, 137);
+}
+
+option {
+  font-size: 1rem;
+  outline: none;
+}
+
+input {
+  outline: none;
+  padding: 0.2em 0.5em;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #333;
+  background-color: unset;
+}
+
+input:focus {
+  border-bottom: 1px solid rgb(138, 137, 137);
+}
+
+.my-5 {
+  padding: 100em auto;
+}
+
+.grey {
+  background-color: grey;
+  color: #fff;
+}
+
+.lead {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode',
+    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.btn {
+  width: 30%;
+  height: 1.5rem;
+  padding: 0.5em;
+  font-size: small;
+  border-radius: 0.27rem;
+}
+
+.btn-add {
+  color: orangered;
+  background-color: #ddd;
+  border-bottom: none;
+  width: 12rem;
+  height: 2rem;
+  font-size: 1rem;
+  padding: 0.5em;
+}
+
+.red {
+  background-color: #e91d1d;
+  color: #fff;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+}
+.py-1 {
+  padding: 0.5em 0;
+}
+
+.my-1 {
+  margin: 0.5em 0;
+  font-weight: 400;
+}
+
+.btn-large {
+  font-size: 50px;
+  color: orangered;
+}
+
+.btn-floating {
+  float: right;
+}
+
+.login-container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.login-card {
+  margin: 0 auto;
+  max-width: 75%;
+  border: solid 1px rgb(194, 186, 186);
+  margin-top: 2em;
+  text-align: center;
+}
+
+.card {
+  margin: 0 auto;
+  max-width: 100%;
+  border: solid 1px rgb(194, 186, 186);
+  margin-top: 2em;
+  text-align: center;
+}
+
+.card-heading {
+  margin: 0.8em auto 0.5em auto;
+  font-size: 1.5rem;
+}
+
+.card-content {
+  padding: 0.8em;
+  text-align: center;
+  height: 20vh;
+}
+
+.story-card-content {
+  padding: 0.8em;
+  text-align: center;
+  height: 15vh;
+  font-size: small;
+  line-height: 1.8;
+}
+
+.card-action {
+  position: relative;
+  margin: 0.5em auto 1em auto;
+}
+
+.section {
+  display: block;
+}
+.divider {
+  width: 97%;
+  height: 1px;
+  background: rgb(156, 149, 149);
+  margin: 1em auto;
+}
+
+.btn-float {
+  float: left;
+  margin-left: 10px;
+}
+
+@media (max-width: 500px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 501px) and (max-width: 866px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
