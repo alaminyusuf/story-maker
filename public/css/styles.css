@@ -36,7 +36,6 @@ footer {
 
 h3 {
   font-weight: 400;
-  margin: 1em 0;
 }
 
 nav {
@@ -228,11 +227,20 @@ input:focus {
 }
 
 @media (max-width: 500px) {
+  li {
+    padding: 0.4em;
+    font-size: 14px;
+  }
+
   .row {
     grid-template-columns: 1fr;
   }
 }
 @media (min-width: 501px) and (max-width: 866px) {
+  li {
+    padding: 0.4em;
+    font-size: 14px;
+  }
   .row {
     grid-template-columns: 1fr 1fr;
   }
