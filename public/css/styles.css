@@ -59,10 +59,11 @@ textarea {
   outline: none;
   padding: 0.2em 0.5em;
   resize: none;
-  width: 100%;
+  width: 95%;
   font-size: large;
   border-bottom: 1px solid #333;
   height: 100%;
+  margin: 0 auto;
 }
 
 select {
@@ -83,6 +84,7 @@ input {
   outline: none;
   padding: 0.2em 0.5em;
   width: 100%;
+  margin: 0 auto;
   border: none;
   border-bottom: 1px solid #333;
   background-color: unset;
