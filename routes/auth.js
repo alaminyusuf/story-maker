@@ -11,7 +11,7 @@ router.get(
 // Callback auth Route
 router.get(
 	'/google/callback',
-	passport.authenticate('google', { failureRedirect: '/' }),
+	passport.authenticate('google', { failureRedirect: '/auth/callback' }),
 	(req, res) => {
 		res.redirect('/dashboard');
 	}
