@@ -6,7 +6,7 @@ p {
 }
 
 .login-container {
-	width: 45% !important;
+	margin: 0 auto;
 	text-align: center;
 }
 
@@ -25,4 +25,10 @@ p {
 
 .error {
 	background-color: rgb(212, 158, 31);
+}
+
+@media (min-width: 900px) {
+	.login-container {
+		width: 45% !important;
+	}
 }
