@@ -1,26 +1,24 @@
 p {
-  margin: 10px 0 !important;
+	margin: 5px 0 !important;
 }
 
 .login-container {
-  width: 400px;
-  margin-top: 50px;
-  text-align: center;
+	width: 45% !important;
 }
 
 .fa-small {
-  font-size: 16px !important;
+	font-size: 16px !important;
 }
 
 .btn-float {
-  float: left;
-  margin-right: 10px;
+	float: left;
+	margin-right: 10px;
 }
 
 .img-small {
-  width: 180px;
+	width: 180px;
 }
 
 .error {
-  background-color: rgb(212, 158, 31);
+	background-color: rgb(212, 158, 31);
 }
