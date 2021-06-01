@@ -1,9 +1,13 @@
+body {
+	font-family: 'Raleway', sans-serif;
+}
 p {
 	margin: 5px 0 !important;
 }
 
 .login-container {
 	width: 45% !important;
+	text-align: center;
 }
 
 .fa-small {
