@@ -14,7 +14,12 @@ router.post('/', ensureAuth, async (req, res) => {
 		await Story.create(req.body);
 		res.redirect('/dashboard');
 	} catch (err) {
-		const error = err.res.render('errors/500');
+		const error = {
+			code: 400,
+			info: 'Please input all fields',
+		};
+		console.log(error.info);
+		res.render('errors/500', error);
 	}
 });
 
