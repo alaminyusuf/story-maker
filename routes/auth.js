@@ -10,7 +10,7 @@ router.get(
 
 // Callback auth Route
 router.get(
-	'/google/callback',
+	'/google/redirect',
 	passport.authenticate('google', { failureRedirect: '/' }),
 	(req, res) => {
 		res.redirect('/dashboard');
